@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0e9">
+<title>A Little Hug for Firda ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+    --peach: #f5c8b7;
+    --peach-light: #fff0e9;
+    --cream: #fffaf3;
+    --lavender: #e9e2f5;
+    --lavender-dark: #a99acb;
+    --brown: #70574f;
+    --text: #594944;
+    --muted: #907d76;
+    --white: #ffffff;
+    --shadow: 0 12px 35px rgba(130, 94, 83, .09);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(160deg, #fff3ed, #fffaf3 48%, #f2edfa);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background .4s;
+}
+
+body::before {
+    content: "✦";
+    position: fixed;
+    top: 10%;
+    left: 7%;
+    font-size: 20px;
+    color: #e8b9a9;
+    animation: twinkle 3s infinite;
+}
+
+body::after {
+    content: "✧";
+    position: fixed;
+    bottom: 12%;
+    right: 8%;
+    font-size: 28px;
+    color: #b8a8d5;
+    animation: twinkle 4s infinite;
+}
+
+.container {
+    width: min(100% - 32px, 620px);
+    margin: auto;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 65px 12px 45px;
+    animation: fadeUp 1s ease both;
+}
+
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.hero-icon {
+    font-size: 55px;
+    margin-bottom: 25px;
+    animation: float 4s ease-in-out infinite;
+}
+
+h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(34px, 8vw, 49px);
+    line-height: 1.3;
+    font-weight: 500;
+    color: #795d55;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    color: #c58e88;
+    font-style: italic;
+}
+
+.hero-description {
+    max-width: 430px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.scroll-hint {
+    margin-top: 65px;
+    font-size: 12px;
+    color: #ad9991;
+    animation: float 3s infinite;
+}
+
+section {
+    margin-bottom: 25px;
+    animation: fadeUp .8s ease both;
+}
+
+.card {
+    background: rgba(255,255,255,.75);
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 25px;
+    padding: 27px 23px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #b18c86;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 18px;
+    color: #765c55;
+}
+
+.message p {
+    font-size: 14px;
+    line-height: 1.95;
+    margin-bottom: 15px;
+    color: #78645d;
+}
+
+.message p:last-child {
+    margin-bottom: 0;
+}
+
+.signature {
+    text-align: right;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: #b17d78;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 14px 23px;
+    min-height: 48px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform .2s, box-shadow .2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #a99acb;
+    outline-offset: 4px;
+}
+
+.primary-btn {
+    color: white;
+    background: linear-gradient(120deg, #d99f98, #b4a3d0);
+    box-shadow: 0 6px 18px rgba(183,145,157,.25);
+}
+
+.secondary-btn {
+    color: #806a63;
+    background: #f6eae5;
+}
+
+.center {
+    text-align: center;
+}
+
+.hug-area {
+    position: relative;
+    overflow: hidden;
+}
+
+.hug-message {
+    margin-top: 20px;
+    min-height: 48px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    font-style: italic;
+    color: #b17d87;
+    line-height: 1.6;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: 10px;
+    font-size: 23px;
+    pointer-events: none;
+    animation: heartUp 2.3s ease-out forwards;
+}
+
+.random-quote {
+    background: linear-gradient(140deg, #f7e8e2, #eee8f8);
+    border-radius: 18px;
+    padding: 24px 18px;
+    min-height: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 18px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #775f64;
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.check-item input {
+    width: 21px;
+    height: 21px;
+    accent-color: #bb9dbb;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.check-item input:checked + span {
+    text-decoration: line-through;
+    color: #a99b96;
+}
+
+.progress {
+    height: 7px;
+    background: #f0e7e4;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 22px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #e5b5a9, #b5a3d1);
+    transition: width .3s;
+}
+
+.progress-text {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 8px;
+}
+
+.countdown-card {
+    text-align: center;
+    background: linear-gradient(140deg, #f8e8e1, #eee8f7);
+}
+
+.date-input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    border: 1px solid #e8d9d8;
+    background: rgba(255,255,255,.8);
+    font-family: inherit;
+    color: var(--text);
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.count-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 55px;
+    color: #b17d87;
+    line-height: 1.2;
+    margin: 12px 0;
+}
+
+.count-caption {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.playlist {
+    text-align: center;
+    background: linear-gradient(130deg, #f4e6e3, #eee8f8);
+}
+
+.playlist-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+footer {
+    padding: 45px 10px 55px;
+    text-align: center;
+}
+
+.footer-heart {
+    font-size: 27px;
+    margin-bottom: 15px;
+    animation: heartbeat 1.8s infinite;
+}
+
+footer h2 {
+    font-size: 27px;
+}
+
+footer p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+.footer-small {
+    margin-top: 25px;
+    font-size: 11px;
+    opacity: .7;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes twinkle {
+    0%,100% { opacity: .3; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes heartUp {
+    0% { transform: translateY(0) scale(.7); opacity: 1; }
+    100% { transform: translateY(-190px) translateX(25px) scale(1.5); opacity: 0; }
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* Mode gelap otomatis mengikuti pengaturan perangkat */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #eee0dc;
+        --muted: #c2b0ad;
+        --brown: #e8d5ce;
+    }
+
+    body {
+        background: linear-gradient(160deg, #28232d, #302a31 50%, #292537);
+    }
+
+    h1, h2 { color: #f0d7cf; }
+
+    .card {
+        background: rgba(62,53,64,.9);
+        border-color: rgba(255,255,255,.06);
+    }
+
+    .message p, .hero-description, .check-item {
+        color: #ddcfcb;
+    }
+
+    .random-quote, .countdown-card, .playlist {
+        background: linear-gradient(140deg, #493a42, #3d3850);
+        color: #f3dfe1;
+    }
+
+    .secondary-btn {
+        background: #51434c;
+        color: #f2dcd5;
+    }
+
+    .progress { background: #50434b; }
+
+    .date-input {
+        background: #423944;
+        color: white;
+        border-color: #665463;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="eyebrow">a little reminder for you ♡</div>
+
+        <div class="hero-icon">🧸</div>
+
+        <h1>
+            Hei, <span id="heroName"></span>.
+            <br>Pulang itu berat ya?
+        </h1>
+
+        <p class="hero-description" id="heroDescription"></p>
+
+        <div class="scroll-hint">
+            Ada sedikit sesuatu buat kamu ↓
+        </div>
+    </header>
+
+    <!-- PESAN PERSONAL -->
+    <section class="card message">
+        <div class="section-label">a letter for you · 01</div>
+        <h2>Untuk kamu yang sedang jauh dari rumah ♡</h2>
+
+        <div id="personalMessage"></div>
+
+        <div class="signature" id="signature"></div>
+    </section>
+
+    <!-- PELUK VIRTUAL -->
+    <section class="card center hug-area" id="hugArea">
+        <div class="section-label">a warm hug · 02</div>
+        <h2>Sepertinya kamu butuh peluk.</h2>
+
+        <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:20px">
+            Walaupun aku belum bisa meluk kamu secara langsung,
+            izinkan aku kirim satu pelukan dari sini.
+        </p>
+
+        <button class="primary-btn" id="hugButton">
+            ♡ Peluk Virtual
+        </button>
+
+        <div class="hug-message" id="hugMessage" aria-live="polite"></div>
+    </section>
+
+    <!-- KATA PENYEMANGAT -->
+    <section class="card center">
+        <div class="section-label">open when you miss home · 03</div>
+        <h2>Buka kalau lagi kangen rumah</h2>
+
+        <div class="random-quote" id="randomQuote" aria-live="polite">
+            Ada satu pesan kecil yang mungkin ingin kamu dengar hari ini.
+        </div>
+
+        <button class="secondary-btn" id="quoteButton">
+            Buka pesan kecil ♡
+        </button>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="card">
+        <div class="section-label">little things for tonight · 04</div>
+        <h2>Bikin kos terasa hangat malam ini</h2>
+
+        <p style="font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.7">
+            Nggak perlu melakukan semuanya. Pilih beberapa hal kecil
+            yang bisa bikin malam kamu terasa lebih nyaman.
+        </p>
+
+        <div class="checklist" id="checklist">
+            <label class="check-item">
+                <input type="checkbox">
+                <span>Nyalakan lampu kuning biar suasananya lebih hangat.</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                <span>Putar playlist favorit sambil istirahat.</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                <span>Video call keluarga atau teman di rumah.</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                <span>Cerita ke Bagusss kalau ada sesuatu apapun itu .</span>
+            </label>
+        </div>
+
+        <div class="progress">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="progress-text" id="progressText" aria-live="polite">
+            0 dari 4 selesai
+        </div>
+    </section>
+
+    <!-- HITUNG MUNDUR -->
+    <section class="card countdown-card">
+        <div class="section-label">something to look forward to · 05</div>
+
+        <div style="font-size:35px;margin-bottom:10px">🏡</div>
+
+        <h2>Berapa hari lagi pulang?</h2>
+
+        <p class="count-caption">
+            Suatu hari nanti, kamu akan kembali duduk
+            bersama orang-orang yang kamu rindukan.
+        </p>
+
+        <label for="homeDate" style="display:block;font-size:13px;margin-top:22px">
+            Kapan rencana pulang berikutnya?
+        </label>
+
+        <input
+            type="date"
+            class="date-input"
+            id="homeDate"
+            aria-label="Tanggal pulang berikutnya"
+        >
+
+        <div class="count-number" id="countNumber">♡</div>
+
+        <div class="count-caption" id="countCaption" aria-live="polite">
+            Masukkan tanggal pulangmu dulu, ya.
+        </div>
+    </section>
+
+    <!-- PLAYLIST -->
+    <section class="card playlist">
+        <div class="playlist-icon">🎧</div>
+
+        <div class="section-label">a soundtrack for you · 06</div>
+
+        <h2>Temani malam kamu dengan musik</h2>
+
+        <p style="font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:20px">
+            Rebahan sebentar, tarik napas pelan-pelan,
+            dan dengarkan lagu yang bikin hati lebih tenang.
+        </p>
+
+        <a id="playlistLink"
+           href="#"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="text-decoration:none">
+            <button class="primary-btn">
+                ♫ Putar Playlist
+            </button>
+        </a>
+    </section>
+
+    <!-- PENUTUP -->
+    <footer>
+        <div class="footer-heart">♡</div>
+
+        <h2>Kamu boleh sedih sebentar.</h2>
+
+        <p id="footerMessage"></p>
+
+        <div class="footer-small">
+            made with a little love, just for you ♡
+            <br>
+            <span id="footerSignature"></span>
+        </div>
+    </footer>
+
+</main>
+
+<script>
+/* =====================================================
+   BAGIAN KUSTOMISASI
+   Semua tulisan dan pengaturan bisa diedit di sini.
+   ===================================================== */
+
+const CONFIG = {
+
+    // Identitas
+    name: "Firda Pratiwi",
+    sender: "Bagusss",
+
+    // Sapaan awal
+    heroDescription:
+        "Aku tahu rasanya nggak mudah setelah beberapa hari bisa berkumpul dengan keluarga, lalu harus kembali ke kos yang mungkin terasa sunyi. Kalau sekarang kamu merasa sedih, kangen rumah, atau bahkan ingin menangis, nggak apa-apa. Aku nggak akan memintamu untuk pura-pura baik-baik saja.",
+
+    // Isi surat personal
+    messages: [
+        "Hei, Firda. Aku cuma mau bilang kalau apa yang kamu rasakan sekarang itu wajar banget. Setelah terbiasa dengan suasana rumah, suara keluarga, dan hal-hal kecil yang bikin nyaman, kembali ke kos yang sepi pasti rasanya berbeda. Jadi, kalau malam ini kamu merasa kesepian, jangan merasa bersalah karena itu.",
+
+        "Aku tahu kamu sudah berusaha sejauh ini. Kamu belajar jauh dari rumah, menjalani hari-hari sendiri, menghadapi banyak hal, dan tetap berusaha kuat meskipun nggak selalu mudah. Mungkin kamu sendiri nggak sadar, tapi menurutku kamu sudah hebat karena bisa sampai di titik ini.",
+
+        "Jangan merasa harus selalu kuat, ya. Kalau ingin menangis, menangislah. Kalau ingin cerita, aku siap mendengarkan. Kamu nggak harus menyimpan semuanya sendirian. Jarak mungkin bikin kita nggak selalu bisa bertemu, tapi bukan berarti kamu sendirian.",
+
+        "Dan jangan lupa sama BOB yang selalu ada disaat aku tidak adaa. Hehehe. Semoga hal kecil itu bisa bikin kamu tersenyum sedikit malam ini. Pelan-pelan saja, ya. Satu hari demi satu hari. Rumah memang tempat yang selalu dirindukan, tapi semoga kamu juga bisa menemukan sedikit rasa nyaman di tempat kamu sekarang."
+    ],
+
+    // Pesan dari pengirim
+    signature: "With love, Bagusss ♡",
+
+    // Pesan acak saat peluk virtual
+    hugMessages: [
+        "Sini, aku peluk jauh-jauh. Jangan merasa sendirian, ya. ♡",
+        "Kalau dunia terasa melelahkan, istirahatlah sebentar. Aku di sini.",
+        "Kamu nggak harus kuat setiap waktu. Aku tetap bangga sama kamu.",
+        "Anggap ini pelukan paling hangat yang bisa aku kirim malam ini.",
+        "Semoga sedikit rasa hangat ini sampai ke hati kamu.",
+        "Jangan lupa, ada seseorang yang selalu ingin kamu baik-baik saja.",
+        "Hari ini mungkin berat, tapi kamu sudah berhasil melewatinya."
+    ],
+
+    // Pesan acak saat kangen rumah
+    homeMessages: [
+        "Sejauh apa pun kamu pergi, rumah akan selalu punya tempat untukmu.",
+        "Nggak apa-apa rindu. Itu tandanya kamu punya tempat yang begitu berarti.",
+        "Malam ini mungkin sepi, tapi hari-hari baik sedang menunggumu.",
+        "Kamu sedang bertumbuh, meskipun prosesnya kadang terasa melelahkan.",
+        "Pelan-pelan saja. Kamu nggak sedang berlomba dengan siapa pun.",
+        "Jangan lupa makan dan istirahat. Ada banyak hal baik menunggumu.",
+        "Rumah selalu punya cara untuk membuatmu merasa diterima kembali.",
+        "Kamu lebih kuat daripada yang kamu bayangkan selama ini.",
+        "Satu hari lagi sudah berhasil kamu lewati. Proud of you!",
+        "Jarak hanya memisahkan tempat, bukan rasa sayang."
+    ],
+
+    // Link playlist Spotify atau YouTube
+    playlistLink: "[LINK SPOTIFY/YOUTUBE]",
+
+    // Penutup
+    footerMessage:
+        "Kalau malam ini terasa panjang, ingat bahwa kamu nggak harus melewatinya dengan sempurna. Aku mungkin nggak selalu ada di sampingmu, tapi aku selalu punya waktu untuk mendengarkan ceritamu. Jangan lupa jaga diri, ya. Aku di sini. ♡"
+};
+
+
+/* =====================================================
+   MENAMPILKAN KONTEN
+   ===================================================== */
+
+// Hero
+document.getElementById("heroName").textContent = CONFIG.name;
+document.getElementById("heroDescription").textContent =
+    CONFIG.heroDescription;
+
+// Surat
+const messageContainer = document.getElementById("personalMessage");
+
+CONFIG.messages.forEach(message => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+    messageContainer.appendChild(paragraph);
+});
+
+document.getElementById("signature").textContent = CONFIG.signature;
+
+// Footer
+document.getElementById("footerMessage").textContent =
+    CONFIG.footerMessage;
+
+document.getElementById("footerSignature").textContent =
+    "For " + CONFIG.name;
+
+// Playlist
+const playlistLink = document.getElementById("playlistLink");
+
+if (
+    CONFIG.playlistLink.startsWith("https://") ||
+    CONFIG.playlistLink.startsWith("http://")
+) {
+    playlistLink.href = CONFIG.playlistLink;
+} else {
+    playlistLink.href = "https://youtu.be/cVzJCxk7p8g?si=fXfKG9QpYu7eYCvp";
+}
+
+
+/* =====================================================
+   PELUK VIRTUAL
+   ===================================================== */
+
+const hugButton = document.getElementById("hugButton");
+const hugArea = document.getElementById("hugArea");
+const hugMessage = document.getElementById("hugMessage");
+
+let previousHug = -1;
+
+hugButton.addEventListener("click", () => {
+
+    let randomIndex;
+
+    do {
+        randomIndex = Math.floor(
+            Math.random() * CONFIG.hugMessages.length
+        );
+    } while (
+        CONFIG.hugMessages.length > 1 &&
+        randomIndex === previousHug
+    );
+
+    previousHug = randomIndex;
+
+    hugMessage.textContent = CONFIG.hugMessages[randomIndex];
+
+    // Membuat hati yang terbang
+    const heartSymbols = ["♡", "♥", "💗", "💕", "🤍"];
+
+    for (let i = 0; i < 9; i++) {
+
+        const heart = document.createElement("span");
+
+        heart.className = "floating-heart";
+
+        heart.textContent =
+            heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+        heart.style.left = (10 + Math.random() * 80) + "%";
+        heart.style.bottom = (10 + Math.random() * 35) + "px";
+        heart.style.animationDelay = (Math.random() * .5) + "s";
+
+        hugArea.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+    }
+});
+
+
+/* =====================================================
+   PESAN ACAK KANGEN RUMAH
+   Tidak mengulang pesan secara berurutan.
+   ===================================================== */
+
+const quoteButton = document.getElementById("quoteButton");
+const randomQuote = document.getElementById("randomQuote");
+
+let previousQuote = -1;
+
+quoteButton.addEventListener("click", () => {
+
+    let randomIndex;
+
+    do {
+        randomIndex = Math.floor(
+            Math.random() * CONFIG.homeMessages.length
+        );
+    } while (
+        CONFIG.homeMessages.length > 1 &&
+        randomIndex === previousQuote
+    );
+
+    previousQuote = randomIndex;
+
+    randomQuote.style.opacity = "0";
+
+    setTimeout(() => {
+        randomQuote.textContent =
+            "“" + CONFIG.homeMessages[randomIndex] + "”";
+
+        randomQuote.style.transition = "opacity .5s";
+        randomQuote.style.opacity = "1";
+    }, 180);
+});
+
+
+/* =====================================================
+   CHECKLIST DAN PROGRESS
+   ===================================================== */
+
+const checkboxes = document.querySelectorAll(
+    "#checklist input[type='checkbox']"
+);
+
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+function updateProgress() {
+
+    const checked = document.querySelectorAll(
+        "#checklist input:checked"
+    ).length;
+
+    const total = checkboxes.length;
+
+    const percentage = (checked / total) * 100;
+
+    progressFill.style.width = percentage + "%";
+
+    progressText.textContent =
+        checked + " dari " + total + " selesai";
+
+    if (checked === total) {
+        progressText.textContent =
+            "Semuanya selesai! Semoga malam kamu lebih hangat. ♡";
+    }
+}
+
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", updateProgress);
+});
+
+
+/* =====================================================
+   HITUNG MUNDUR TANGGAL PULANG
+   ===================================================== */
+
+const homeDate = document.getElementById("homeDate");
+const countNumber = document.getElementById("countNumber");
+const countCaption = document.getElementById("countCaption");
+
+// Membatasi tanggal minimal ke hari ini
+const today = new Date();
+const todayLocal = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+homeDate.min = todayLocal;
+
+function updateCountdown() {
+
+    if (!homeDate.value) {
+        countNumber.textContent = "♡";
+        countCaption.textContent =
+            "Masukkan tanggal pulangmu dulu, ya.";
+        return;
+    }
+
+    const selectedDate = new Date(
+        homeDate.value + "T00:00:00"
+    );
+
+    const currentDate = new Date();
+
+    currentDate.setHours(0, 0, 0, 0);
+
+    const difference = Math.ceil(
+        (selectedDate - currentDate) / (1000 * 60 * 60 * 24)
+    );
+
+    if (difference < 0) {
+
+        countNumber.textContent = "♡";
+
+        countCaption.textContent =
+            "Tanggalnya sudah lewat. Semoga ada kesempatan pulang berikutnya.";
+
+    } else if (difference === 0) {
+
+        countNumber.textContent = "0";
+
+        countCaption.textContent =
+            "Hari ini waktunya pulang! Semoga menyenangkan. 🏡";
+
+    } else {
+
+        countNumber.textContent = difference;
+
+        countCaption.textContent =
+            "Hari lagi sampai kamu bisa pulang dan bertemu keluarga. ♡";
+    }
+}
+
+homeDate.addEventListener("change", updateCountdown);
+
+// Memperbarui hitung mundur ketika halaman dibuka
+updateCountdown();
+
+</script>
+
+</body>
+</html>
